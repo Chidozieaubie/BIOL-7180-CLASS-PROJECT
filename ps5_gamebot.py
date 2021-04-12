@@ -37,7 +37,7 @@ def send_email(stock, status, url, e_password, seller):
     if stock != status:
         port = 465  # For SSL
         smtp_server = "smtp.gmail.com"
-        sender_email = "cg.ugochukwu@unizik.edu.ng"  # Enter your gmail address
+        sender_email = "chidozieugochukwu8"  # Enter your gmail address
         receiver_email = [cgu0001@auburn.edu]  # Enter receivers email addresses
         password = e_password
         message = """Subject: PS5 in stock at {}!\n\n
@@ -72,7 +72,6 @@ url_bb = 'https://www.bestbuy.com/site/playstation-5/playstation-5-packages/pcmc
 url_sony = 'https://direct.playstation.com/en-us/consoles/console/playstation5-console.3005816'
 DRIVER_PATH ='/home/chidozie/Downloads/chromedriver_linux64' #Put the path to your chromedriver here, for example: C:/Users/*YourUsernameHere*/Desktop/chromedriver.exe
 
-# There is definitely potential to refactor all the code below, but I'm lazy as all hell at the moment.
 # START BB
 options = Options()
 options.headless = False
