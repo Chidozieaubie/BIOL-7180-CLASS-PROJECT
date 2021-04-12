@@ -12,7 +12,6 @@ import time
 
 print('Enter your email password:')
 email_password = input()
-#email_password = '' #Password for your gmail email address
 
 def send_email(stock, status, url, e_password, seller):
     '''
