@@ -10,9 +10,9 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from bs4 import BeautifulSoup
 import time
 
-print('Enter your email password:')
-email_password = input()
-
+#print('Enter your email password:')
+#email_password = input()
+email_password = 'Raymondtutu84.'
 def send_email(stock, status, url, e_password, seller):
     '''
     stock = in_stock
@@ -34,11 +34,11 @@ def send_email(stock, status, url, e_password, seller):
     U.S. Cellular: [number]@email.uscc.net
     Virgin Mobile: [number]@vmobl.com
     '''
-    if stock != status:
+    if stock == status:
         port = 465  # For SSL
         smtp_server = "smtp.gmail.com"
         sender_email = "chidozieugochukwu8"  # Enter your gmail address
-        receiver_email = [cgu0001@auburn.edu]  # Enter receivers email addresses
+        receiver_email = "cgu0001@auburn.edu"  # Enter receivers email addresses
         password = e_password
         message = """Subject: PS5 in stock at {}!\n\n
 
@@ -54,7 +54,7 @@ def send_email(stock, status, url, e_password, seller):
 
             # Text Messaging
             msg = MIMEMultipart()
-            sms_gateway_1 = '@txt.att.net' #put your att phone number before the @ symbol
+            sms_gateway_1 = '+13345248799@tmomail.net' #put your att phone number before the @ symbol
             msg['From'] = sender_email
             msg['To'] = sms_gateway_1
             # Make sure you add a new line in the subject
@@ -70,7 +70,7 @@ def send_email(stock, status, url, e_password, seller):
 url_target = 'https://www.target.com/p/playstation-5-console/-/A-81114595?clkid=de251659N4bdd11eb8a0142010a246cc4&lnm=81938&afid=Future%20PLC.&ref=tgt_adv_xasd0002'
 url_bb = 'https://www.bestbuy.com/site/playstation-5/playstation-5-packages/pcmcat1588107358954.c?irclickid=wCqWhtwKpxyLUxN0UfQwQyYMUkEymrWV1xIEXM0&irgwc=1&ref=198&loc=Narrativ&acampID=0&mpid=376373'
 url_sony = 'https://direct.playstation.com/en-us/consoles/console/playstation5-console.3005816'
-DRIVER_PATH ='/home/chidozie/Downloads/chromedriver_linux64' #Put the path to your chromedriver here, for example: C:/Users/*YourUsernameHere*/Desktop/chromedriver.exe
+DRIVER_PATH ='/usr/bin/chromedriver' #Put the path to your chromedriver here, for example: C:/Users/*YourUsernameHere*/Desktop/chromedriver.exe
 
 # START BB
 options = Options()
@@ -103,7 +103,7 @@ driver.get(url_target)
 time.sleep(4)
 html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser')
-in_stock_target = soup.find('div', {"data-test": "storeFulfillmentAggregator"}).text.split(' in')[0]
+in_stock_target = soup.find('div', {"data-test": "flexible-fulfillment"}).text.split('See')[0]
 in_status_target = 'Out of stock'
 send_email(in_stock_target, in_status_target, url_target, email_password, 'target')
 driver.quit()
