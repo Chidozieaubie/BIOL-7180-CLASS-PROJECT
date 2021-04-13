@@ -13,7 +13,7 @@ The script is dynamically built to allow users _scalp_ select stores -Best Buy, 
 *	Selenium
 *	BS4
 
-You can do:  pip install -r Requiredsoftwares.txt if you want to install everything needed
+You can do:  pip install -r requirements.txt if you want to install everything needed
 
 To get notifications, you will need to have two emails; sender and receiver addresses. I have set this script to use the google SMTP-SSL protocol, so you must use a gmail address as a sending address. Your email’s password can be hardcoded into the script or typed in from the command line. I commented on both options in the script. The former option allows you to have a Task Scheduler run the script at user-set intervals without the inconvenience of having to type in password all the time. 
 Secondly, you will need to input a phone number that you wish to get sms alerts from, as well as their corresponding carrier.   In the script, I provided a reference to some of the major mobile carriers and their domain names to help you.
