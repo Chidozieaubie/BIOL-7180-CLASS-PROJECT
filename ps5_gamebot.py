@@ -71,8 +71,9 @@ url_target = 'https://www.target.com/p/playstation-5-console/-/A-81114595?clkid=
 url_bb = 'https://www.bestbuy.com/site/playstation-5/playstation-5-packages/pcmcat1588107358954.c?irclickid=wCqWhtwKpxyLUxN0UfQwQyYMUkEymrWV1xIEXM0&irgwc=1&ref=198&loc=Narrativ&acampID=0&mpid=376373'
 url_sony = 'https://direct.playstation.com/en-us/consoles/console/playstation5-console.3005816'
 url_walmart = 'https://www.walmart.com/ip/Sony-PlayStation-5-Video-Game-Console/363472942'
-url_gamestop = https://www.gamestop.com/video-games/playstation-5/consoles/products/playstation-5/11108140.html
-url_antonline = https://www.antonline.com/Sony/Electronics/Gaming_Devices/Gaming_Consoles/1420828
+url_gamestop = 'https://www.gamestop.com/video-games/playstation-5/consoles/products/playstation-5/11108140.html'
+url_antonline = 'https://www.antonline.com/Sony/Electronics/Gaming_Devices/Gaming_Consoles/1420828'
+url_adorama = 'https://www.adorama.com/so3005718.html?sterm=xPzXPaRYdxyLRjhwUx0Mo3YtUkESYlUWzQb-1k0&utm_source=rflaid913479'
 DRIVER_PATH ='/usr/bin/chromedriver' #Put the path to your chromedriver here, for example: C:/Users/*YourUsernameHere*/Desktop/chromedriver.exe
 
 # START BESTBUY
@@ -166,3 +167,26 @@ send_email(in_stock_antonline, in_status_antonline, url_antonline, email_passwor
 driver.quit()
 
 in_stock_gamestop = soup.find('div', {"data-test": "flexible-fulfillment"}).text.split('See')[0]
+
+
+# START ADORAMA
+options = Options()
+options.headless = False
+options.add_argument("--window-size=1920,1200")
+
+caps = DesiredCapabilities().CHROME
+caps["pageLoadStrategy"] = "eager"
+
+driver = webdriver.Chrome(desired_capabilities=caps, options=options, executable_path=DRIVER_PATH)
+driver.get(url_adorama)
+time.sleep(4)
+html = driver.page_source
+soup = BeautifulSoup(html, 'html.parser')
+in_stock_gamestop = soup.find('button', {"class": "add-to-cart-button"}).text
+in_status_gamestop = 'Temporarily not available'
+send_email(in_stock_adorama, in_status_adorama, url_adorama, email_password, 'adorama')
+driver.quit()
+
+in_stock_gamestop = soup.find('div', {"data-test": "flexible-fulfillment"}).text.split('See')[0]
+
+
