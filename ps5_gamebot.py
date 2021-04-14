@@ -12,7 +12,7 @@ import time
 
 print('Enter your email password:')
 email_password = input()
-#email_password = 'Raymondtutu84.'
+#email_password = ''
 def send_email(stock, status, url, e_password, seller):
     '''
     stock = in_stock
