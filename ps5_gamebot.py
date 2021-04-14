@@ -70,6 +70,7 @@ def send_email(stock, status, url, e_password, seller):
 url_target = 'https://www.target.com/p/playstation-5-console/-/A-81114595?clkid=de251659N4bdd11eb8a0142010a246cc4&lnm=81938&afid=Future%20PLC.&ref=tgt_adv_xasd0002'
 url_bb = 'https://www.bestbuy.com/site/playstation-5/playstation-5-packages/pcmcat1588107358954.c?irclickid=wCqWhtwKpxyLUxN0UfQwQyYMUkEymrWV1xIEXM0&irgwc=1&ref=198&loc=Narrativ&acampID=0&mpid=376373'
 url_sony = 'https://direct.playstation.com/en-us/consoles/console/playstation5-console.3005816'
+url_walmart = 'https://www.walmart.com/ip/Sony-PlayStation-5-Video-Game-Console/363472942'
 DRIVER_PATH ='/usr/bin/chromedriver' #Put the path to your chromedriver here, for example: C:/Users/*YourUsernameHere*/Desktop/chromedriver.exe
 
 # START BB
@@ -126,3 +127,20 @@ in_status_sony = 'Out of Stock'
 send_email(in_stock_sony, in_status_sony, url_sony, email_password, 'sony direct')
 driver.quit()
 
+# START WALMART
+options = Options()
+options.headless = False
+options.add_argument("--window-size=1920,1200")
+
+caps = DesiredCapabilities().CHROME
+caps["pageLoadStrategy"] = "eager"
+
+driver = webdriver.Chrome(desired_capabilities=caps, options=options, executable_path=DRIVER_PATH)
+driver.get(url_walmart)
+time.sleep(4)
+html = driver.page_source
+soup = BeautifulSoup(html, 'html.parser')
+in_stock_walmart = soup.find('div', {"data-test": "flexible-fulfillment"}).text.split('See')[0]
+in_status_walmart = 'out of stock'
+send_email(in_stock_walmart, in_status_walmart, url_walmart, email_password, 'walmart')
+driver.quit()
