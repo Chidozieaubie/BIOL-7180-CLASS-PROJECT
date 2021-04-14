@@ -69,7 +69,6 @@ def send_email(stock, status, url, e_password, seller):
 
 url_target = 'https://www.target.com/p/playstation-5-console/-/A-81114595?clkid=de251659N4bdd11eb8a0142010a246cc4&lnm=81938&afid=Future%20PLC.&ref=tgt_adv_xasd0002'
 url_bb = 'https://www.bestbuy.com/site/playstation-5/playstation-5-packages/pcmcat1588107358954.c?irclickid=wCqWhtwKpxyLUxN0UfQwQyYMUkEymrWV1xIEXM0&irgwc=1&ref=198&loc=Narrativ&acampID=0&mpid=376373'
-url_sony = 'https://direct.playstation.com/en-us/consoles/console/playstation5-console.3005816'
 url_walmart = 'https://www.walmart.com/ip/Sony-PlayStation-5-Video-Game-Console/363472942'
 url_gamestop = 'https://www.gamestop.com/video-games/playstation-5/consoles/products/playstation-5/11108140.html'
 url_antonline = 'https://www.antonline.com/Sony/Electronics/Gaming_Devices/Gaming_Consoles/1420828'
@@ -110,24 +109,6 @@ soup = BeautifulSoup(html, 'html.parser')
 in_stock_target = soup.find('div', {"data-test": "flexible-fulfillment"}).text.split('See')[0]
 in_status_target = 'Out of stock'
 send_email(in_stock_target, in_status_target, url_target, email_password, 'target')
-driver.quit()
-
-# START SONY
-options = Options()
-options.headless = False
-options.add_argument("--window-size=1920,1200")
-
-caps = DesiredCapabilities().CHROME
-caps["pageLoadStrategy"] = "eager"
-
-driver = webdriver.Chrome(desired_capabilities=caps, options=options, executable_path=DRIVER_PATH)
-driver.get(url_sony)
-time.sleep(3)
-html = driver.page_source
-soup = BeautifulSoup(html, 'html.parser')
-in_stock_sony = soup.find('div', {"class": "button-placeholder"}).text.split('\n')[1].strip()
-in_status_sony = 'Out of Stock'
-send_email(in_stock_sony, in_status_sony, url_sony, email_password, 'sony direct')
 driver.quit()
 
 # START WALMART
