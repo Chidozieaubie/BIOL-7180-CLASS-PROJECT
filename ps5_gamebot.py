@@ -38,7 +38,7 @@ def send_email(stock, status, url, e_password, seller):
         port = 465  # For SSL
         smtp_server = "smtp.gmail.com"
         sender_email = "chidozieugochukwu8"  # Enter your gmail address
-        receiver_email = "cgu0001@auburn.edu"  # Enter receivers email addresses
+        receiver_email = "gfl0003@auburn.edu"  # Enter receivers email addresses
         password = e_password
         message = """Subject: PS5 in stock at {}!\n\n
 
@@ -100,7 +100,7 @@ caps["pageLoadStrategy"] = "eager"
 
 driver = webdriver.Chrome(desired_capabilities=caps, options=options, executable_path=DRIVER_PATH)
 driver.get(url_target)
-time.sleep(4)
+time.sleep(8)
 html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser')
 in_stock_target = soup.find('div', {"data-test": "flexible-fulfillment"}).text.split('See')[0]
