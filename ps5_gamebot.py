@@ -187,6 +187,5 @@ in_status_gamestop = 'Temporarily not available'
 send_email(in_stock_adorama, in_status_adorama, url_adorama, email_password, 'adorama')
 driver.quit()
 
-in_stock_gamestop = soup.find('div', {"data-test": "flexible-fulfillment"}).text.split('See')[0]
 
 
