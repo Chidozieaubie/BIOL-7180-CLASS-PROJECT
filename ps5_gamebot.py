@@ -10,9 +10,9 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from bs4 import BeautifulSoup
 import time
 
-#print('Enter your email password:')
-#email_password = input()
-email_password = 'Raymondtutu84.'
+print('Enter your email password:')
+email_password = input()
+#email_password = 'Raymondtutu84.'
 def send_email(stock, status, url, e_password, seller):
     '''
     stock = in_stock
@@ -37,8 +37,8 @@ def send_email(stock, status, url, e_password, seller):
     if stock == status:
         port = 465  # For SSL
         smtp_server = "smtp.gmail.com"
-        sender_email = "chidozieugochukwu8"  # Enter your gmail address
-        receiver_email = "gfl0003@auburn.edu"  # Enter receivers email addresses
+        sender_email = "chidozieug*****"  # Enter your gmail address
+        receiver_email = "gfl******"  # Enter receivers email addresses
         password = e_password
         message = """Subject: PS5 in stock at {}!\n\n
 
